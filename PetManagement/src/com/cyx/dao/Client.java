@@ -90,7 +90,7 @@ class Pet{
 
 public class Client{
 	private static void insertPet(int count) throws Exception{
-		int n=22;
+		int n=19;
 		String[] a= {"萨摩耶","哈士奇","阿拉斯加","柯基","博美","金毛","法斗"};
 		String[] b= {"布偶","橘猫","孟加拉猫","英短","美短","加菲猫","波斯猫"};
 		String[] c= {"1个月","2个月","3个月","4个月","5个月","6个月","7个月","8个月","9个月","10个月","11个月","12个月","1岁","1岁1个月","1岁2个月","1岁3个月","2岁","1岁4个月"};
@@ -117,7 +117,7 @@ public class Client{
 				Pet pet=new Pet();
 				
 				pet.setKind("狗");
-				pet.setVeriety(b[new Random().nextInt(a.length)]);
+				pet.setVeriety(a[new Random().nextInt(a.length)]);
 				pet.setAge(c[new Random().nextInt(c.length)]);
 				pet.setSex(d[new Random().nextInt(d.length)]);
 				pet.setNumber(n);
@@ -134,7 +134,7 @@ public class Client{
 				Pet pet=new Pet();
 				
 				pet.setKind("猫");
-				pet.setVeriety(a[new Random().nextInt(a.length)]);
+				pet.setVeriety(b[new Random().nextInt(a.length)]);
 				pet.setAge(c[new Random().nextInt(c.length)]);
 				pet.setSex(d[new Random().nextInt(d.length)]);
 				pet.setNumber(n);
