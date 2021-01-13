@@ -150,12 +150,12 @@ public class LoginSQL {
 		}
 		return s;
 	}*/
-	public static void enshrine(String number) {
+	public static void enshrine(String veriety) {
 		Connection conn;
 		try {
 			conn = new LoginSQL().getConnection();
-			PreparedStatement pstmt1=conn.prepareStatement("select * from Pet where vetiety=?");
-			 pstmt1.setString(1, number);
+			PreparedStatement pstmt1=conn.prepareStatement("select * from Pet where veriety=?");
+			 pstmt1.setString(1, veriety);
 			 ResultSet rs1=pstmt1.executeQuery();
 			 ArrayList<Animal> list1=new ArrayList<>();
 			 while(rs1.next()) {
