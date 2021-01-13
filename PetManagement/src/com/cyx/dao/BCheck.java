@@ -74,15 +74,15 @@ public class BCheck{
 			Connection conn=null;
 			conn=new LoginSQL().getConnection();
 			String sql="select * from Pet";
-			PreparedStatement pstmt=conn.prepareStatement(sql);
-			ResultSet rs=pstmt.executeQuery();
+			Statement stmt=conn.createStatement();
+			ResultSet rs=stmt.executeQuery(sql);
 			
 			int count=0;
 			while(rs.next()) {
 				count++;
 			}
-			rs=pstmt.executeQuery();
-			Object[][] info=new Object[count][9];
+			rs=stmt.executeQuery(sql);
+			Object[][] info=new Object[count][5];
 			count=0;
 			while(rs.next()) {
 				info[count][0]=rs.getString(1);
@@ -90,14 +90,11 @@ public class BCheck{
 				info[count][2]=rs.getString(3);
 				info[count][3]=rs.getString(4);
 				info[count][4]=rs.getString(5);
-				info[count][5]=rs.getString(6);
-				info[count][6]=rs.getString(7);
-				info[count][7]=rs.getString(8);
-				info[count][8]=rs.getString(9);
+				
 				
 				count++;
 			}
-			String[] title= {"物种","品种","年龄","性别","编号","颜色","份额","库存","价格"};
+			String[] title= {"物种","品种","份额","库存","价格"};
 			this.tab=new JTable(info,title);
 			this.jth=this.tab.getTableHeader();
 			this.scp.getViewport().add(tab);

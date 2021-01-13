@@ -26,11 +26,11 @@ public class CyxText {
 		new Keeper();
 	}
 	@Test
-	public void caoTest5()throws Exception {
+	public void caoTest5() throws Exception {
 		new LoginSQL().queryClient();
 	}
 	@Test
-	public void caoTest6()throws Exception{
+	public void caoTest6() throws Exception {
 		new LoginSQL().queryBoss();
 	}
 	@Test
@@ -53,40 +53,38 @@ public class CyxText {
 	}
 	@Test
 	public void caoTest10() {
-		String number="1";
-		new LoginSQL().deletePet(number);
+		String variety="萨摩耶";
+		new LoginSQL().deletePet(variety);
 	}
 	@Test
 	public void caoTest11() {
-		String number="1";
 		String kind="狗";
 		String variety="博美";
-		String age="1岁";
-		String sex="雄性";
-		String color="白色";
-		new LoginSQL().addInfo(number, kind, variety, age, sex, color);
+		String portion="10";
+		String inventery="10";
+		String price="1900元";
+		new LoginSQL().addInfo(kind,variety,portion,inventery,price);
 	}
 	@Test
 	public void caoTest12() {
-		String number="2";
 		String kind="猫";
 		String variety="折耳猫";
-		String age="5个月";
-		String sex="雌性";
-		String color="黄黑色";
-		new LoginSQL().alterInfo(number, kind, variety, age, sex, color);
+		String portion="20";
+		String inventery="5";
+		String price="3000元";
+		new LoginSQL().alterInfo( kind, variety, portion,inventery,price);
 			
 	}
 	@Test
 	public void caoTest13() {
 		String kind="狗";
 		String veriety="哈士奇";
-		String age="1岁";
-		String sex="雄性";
-		String color="黑白色";
-		String name="陆悍骁";
-		String adress="翻斗大街0098号";
-		new LoginSQL().insertOrder(kind, veriety, age, sex, color, name, adress);
+		String name="hh";
+		String adress="北京市";
+		String id="129038";
+		String price="1900元";
+		
+		new LoginSQL().insertOrder(kind, veriety,name,adress,price,id );
 			
 	}
 }

@@ -11,18 +11,18 @@ import com.cyx.ui.BInterface;
 
 public class BAlter{
 	private JFrame frame=new JFrame("信息修改");
-	private JLabel lblN=new JLabel("要修改的宠物编号");
-	private JLabel lblK=new JLabel("修改物种");
+	private JLabel lblK=new JLabel("要修改的宠物种类");
+	
 	private JLabel lblV=new JLabel("修改品种");
-	private JLabel lblA=new JLabel("修改年龄");
-	private JLabel lblS=new JLabel("修改性别");
-	private JLabel lblC=new JLabel("修改颜色");
-	private JTextField txtN=new JTextField(30);
-	private JTextField txtK=new JTextField(30);
+	private JLabel lblP=new JLabel("修改份额");
+	private JLabel lblI=new JLabel("修改库存");
+	private JLabel lblR=new JLabel("修改价格");
+	private JTextField txtK=new JTextField(70);
+	
 	private JTextField txtV=new JTextField(30);
-	private JTextField txtA=new JTextField(30);
-	private JTextField txtS=new JTextField(30);
-	private JTextField txtC=new JTextField(30);
+	private JTextField txtP=new JTextField(30);
+	private JTextField txtI=new JTextField(30);
+	private JTextField txtR=new JTextField(30);
 	private JButton btnOK=new JButton("确定");
 	
 	private JButton btnReturn=new JButton("返回");
@@ -35,10 +35,7 @@ public class BAlter{
 		JLabel bg=new JLabel(new ImageIcon("D:\\JAVA\\pet5.jpg"));
 		frame.setContentPane(bg);
 		
-		lblN.setBounds(100,100,220,100);//横轴x，数轴y，宽度，高度
-		lblN.setFont(new Font("宋体",Font.BOLD,25));
-		lblN.setForeground(Color.PINK);
-		frame.add(lblN);
+		
 		lblK.setBounds(100,200,200,100);
 		lblK.setFont(new Font("宋体",Font.BOLD,25));
 		lblK.setForeground(Color.PINK);
@@ -47,31 +44,30 @@ public class BAlter{
 		lblV.setFont(new Font("宋体",Font.BOLD,25));
 		lblV.setForeground(Color.PINK);
 		frame.add(lblV);
-		lblA.setBounds(100,400,200,100);
-		lblA.setFont(new Font("宋体",Font.BOLD,25));
-		lblA.setForeground(Color.PINK);
-		frame.add(lblA);
-		lblS.setBounds(100,500,200,100);
-		lblS.setFont(new Font("宋体",Font.BOLD,25));
-		lblS.setForeground(Color.PINK);
-		frame.add(lblS);
-		lblC.setBounds(100,600,200,100);
-		lblC.setFont(new Font("宋体",Font.BOLD,25));
-		lblC.setForeground(Color.PINK);
-		frame.add(lblC);
+		lblP.setBounds(100,400,200,100);
+		lblP.setFont(new Font("宋体",Font.BOLD,25));
+		lblP.setForeground(Color.PINK);
+		frame.add(lblP);
+		lblI.setBounds(100,500,200,100);
+		lblI.setFont(new Font("宋体",Font.BOLD,25));
+		lblI.setForeground(Color.PINK);
+		frame.add(lblI);
+		lblR.setBounds(100,600,200,100);
+		lblR.setFont(new Font("宋体",Font.BOLD,25));
+		lblR.setForeground(Color.PINK);
+		frame.add(lblR);
 		
-		txtN.setBounds(400, 130, 200, 50);
-		frame.add(txtN);
+		
 		txtK.setBounds(400, 230, 200, 50);
 		frame.add(txtK);
 		txtV.setBounds(400, 330, 200, 50);
 		frame.add(txtV);
-		txtA.setBounds(400, 430, 200, 50);
-		frame.add(txtA);
-		txtS.setBounds(400, 530, 200, 50);
-		frame.add(txtS);
-		txtC.setBounds(400, 630, 200, 50);
-		frame.add(txtC);
+		txtP.setBounds(400, 430, 200, 50);
+		frame.add(txtP);
+		txtI.setBounds(400, 530, 200, 50);
+		frame.add(txtI);
+		txtR.setBounds(400, 630, 200, 50);
+		frame.add(txtR);
 		
 		btnOK.setBounds(400, 730, 80, 40);
 		frame.add(btnOK);
@@ -97,13 +93,12 @@ public class BAlter{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				String number=txtN.getText();
-				String kind=txtN.getText();
-				String variety=txtN.getText();
-				String age=txtN.getText();
-				String sex=txtN.getText();
-				String color=txtN.getText();
-				new LoginSQL().addInfo(number, kind, variety, age, sex, color);
+				String kind=txtK.getText();
+				String variety=txtV.getText();
+				String portion=txtP.getText();
+				String inventery=txtI.getText();
+				String price=txtR.getText();
+				new LoginSQL().alterInfo(kind, variety, portion, inventery, price);
 				JOptionPane.showMessageDialog(null,"修改完毕");	
 			}
 		});

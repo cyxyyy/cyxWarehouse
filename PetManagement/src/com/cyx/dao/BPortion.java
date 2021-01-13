@@ -19,7 +19,7 @@ public class BPortion extends JFrame{
 	private JButton btnOK;
 	private JButton btnReturn=new JButton("返回");
 	public BPortion() {
-		super("查看月订单份额");
+		super("查看订单份额");
 		//this.setSize(330,400);
 		this.setSize(1000,1000);
 		this.setLayout(null);

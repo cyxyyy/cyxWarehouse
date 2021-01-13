@@ -43,7 +43,7 @@ public class LoginSQL {
 	public static ResultSet queryPet() throws Exception{
 		Connection conn=getConnection();
 		Statement stmt=conn.createStatement();
-		String sql="select number,veriety,kind,age,sex,color,portion,inventery from Pet";
+		String sql="select kind,veriety,portion,inventery,price from Pet";
 		ResultSet rs=stmt.executeQuery(sql);
 		return rs;
 	}
@@ -73,63 +73,62 @@ public class LoginSQL {
 			e.printStackTrace();
 		}
 	}
-	public static void deletePet(String number) {//删除宠物信息
+	public static void deletePet(String veriety) {//删除宠物信息
 		try {
 			Connection conn=getConnection();
-			String sql="delete from Pet where number=?";
+			String sql="delete from Pet where veriety=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1,number);
+			pstmt.setString(1,veriety);
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	//添加宠物信息
-	public static void addInfo(String number,String kind,String variety,String age,String sex,String color) {
+	public static void addInfo(String kind,String variety,String portion,String inventery,String price) {
 		try {
 			Connection conn=getConnection();
-			String sql="insert into Pet(number,kind,veriety,age,sex,color)values (?,?,?,?,?,?)";
+			String sql="insert into Pet(kind,veriety,portion,inventery,price)values (?,?,?,?,?)";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, number);
-			pstmt.setString(2, kind);
-			pstmt.setString(3, variety);
-			pstmt.setString(4, age);
-			pstmt.setString(5, sex);
-			pstmt.setString(6, color);
+			
+			pstmt.setString(1, kind);
+			pstmt.setString(2, variety);
+			pstmt.setString(3, portion);
+			pstmt.setString(4, inventery);
+			pstmt.setString(5, price);
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	//修改宠物信息
-	public static void alterInfo(String number,String kind,String variety,String age,String sex,String color) {
+	public static void alterInfo(String kind,String veriety,String portion,String inventery,String price) {
 		try {
 			Connection conn=getConnection();
-			String sql="update Pet set kind=?,veriety=?,age=?,sex=?,color=? where number=?";
+			String sql="update Pet set kind=?,portion=?,inventery=?,price=? where veriety=?";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, number);
-			pstmt.setString(2, variety);
-			pstmt.setString(3, kind);
-			pstmt.setString(4, age);
-			pstmt.setString(5, sex);
-			pstmt.setString(6, color);
+			pstmt.setString(1, kind);
+			pstmt.setString(2, portion);
+			pstmt.setString(3, inventery);
+			pstmt.setString(4, price);
+			pstmt.setString(5, veriety);
+			
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-	public static void insertOrder(String kind,String veriety,String age,String sex,String color,String name,String adress) {
+	public static void insertOrder(String kind,String veriety,String name,String adress,String price,String id) {
 		try {
 			Connection conn=getConnection();
-			String sql="insert into COrder(kind,name,sex,adress,age,color,veriety) values (?,?,?,?,?,?,?)";
+			String sql="insert into COrder(name,id,adress,kind,veriety,price) values (?,?,?,?,?,?)";
 			PreparedStatement pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, kind);
-			pstmt.setString(2, name);
-			pstmt.setString(3, sex);
-			pstmt.setString(4, adress);
-			pstmt.setString(5, age);
-			pstmt.setString(6, color);
-			pstmt.setString(7,veriety);
+			pstmt.setString(1, name);
+			pstmt.setString(2, id);
+			pstmt.setString(3, adress);
+			pstmt.setString(4, kind);
+			pstmt.setString(5, veriety);
+			pstmt.setString(6, price);
 			pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -155,7 +154,7 @@ public class LoginSQL {
 		Connection conn;
 		try {
 			conn = new LoginSQL().getConnection();
-			PreparedStatement pstmt1=conn.prepareStatement("select * from Pet where number=?");
+			PreparedStatement pstmt1=conn.prepareStatement("select * from Pet where vetiety=?");
 			 pstmt1.setString(1, number);
 			 ResultSet rs1=pstmt1.executeQuery();
 			 ArrayList<Animal> list1=new ArrayList<>();
@@ -163,13 +162,10 @@ public class LoginSQL {
 				 Animal animal=new Animal();
 				 animal.setKind(rs1.getString(1));
 				 animal.setVeriety(rs1.getString(2));
-				 animal.setAge(rs1.getString(3));
-				 animal.setSex(rs1.getString(4));
-				 animal.setNumber(rs1.getString(5));
-				 animal.setColor(rs1.getString(6));
-				 animal.setPortion(rs1.getString(7));
-				 animal.setInventery(rs1.getString(8));
-				 animal.setPrice(rs1.getString(9));
+				 animal.setPortion(rs1.getString(3));
+				 animal.setInventery(rs1.getString(4));
+				 animal.setPrice(rs1.getString(5));
+				 
 				 list1.add(animal);
 			 }
 			 FileOutputStream fileOutputStream1=new FileOutputStream(new File("D:\\my javaSQL\\Aniamal.txt"));

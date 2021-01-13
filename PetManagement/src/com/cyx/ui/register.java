@@ -20,10 +20,12 @@ public class register extends JPanel {
 	private JLabel lblName=new JLabel("用户名");
 	private JTextField txtName=new JTextField(50);
 	private JLabel lblPassword=new JLabel("密码");
+	private JLabel lblA=new JLabel("地址");
 	private JTextField txtPassword=new JTextField(50);
 	private JLabel lblPasswordAgain=new JLabel("请确认密码");
 	private JTextField txtPasswordAgain=new JTextField(50);
 	private JButton btnOK=new JButton("确认");
+	private JTextField txtA=new JTextField(50);
 	private JButton btnReturn=new JButton("返回");
 	public register() {
 		frame.setSize(600,600);
@@ -56,10 +58,18 @@ public class register extends JPanel {
 		txtPasswordAgain.setBounds(180,160,100,20);
 		frame.add(txtPasswordAgain);
 		
+		lblA.setBounds(100,190,100,20);//横轴x，数轴y，宽度，高度
+		lblA.setFont(new Font("宋体",Font.BOLD,20));
+		frame.add(lblA);
+		txtA.setBounds(180,190,100,20);
+		frame.add(txtA);
+		
 		btnOK.setBounds(100,200,80,30);//横轴x，数轴y，宽度，高度
 		frame.add(btnOK);
 		btnReturn.setBounds(200,200,80,30);
 		frame.add(btnReturn);
+		
+		
 		
 		btnReturn.addActionListener(new ActionListener() {
 			@Override
@@ -79,6 +89,7 @@ public class register extends JPanel {
 				String txtpassword=txtPassword.getText();
 				String userId=String.valueOf(new Random().nextInt(899999)+100000);
 				try {
+					
 					new LoginSQL().insertClient(userId, txtpassword, txtname);
 					new FinishRegister();
 				}catch(Exception e) {

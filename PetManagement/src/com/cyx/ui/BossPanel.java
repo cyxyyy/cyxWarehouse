@@ -77,7 +77,7 @@ public class BossPanel extends JPanel{
 				boolean isMatch=false;
 				try {
 				ResultSet rs=null;
-				rs=new LoginSQL().queryClient();
+				rs=new LoginSQL().queryBoss();
 				while(rs.next()){
 					String id=rs.getString("id");//数据库字段名请根据你的实际填写
 					if(tid.equals(id)){//如果输入的名字与数据库中的名字相同，则比较密码

@@ -26,7 +26,7 @@ public class BInterface extends JFrame{
 	private JLabel lblCheck=new JLabel("查看所有宠物信息");
 	private JLabel lblQuery=new JLabel("模糊查询");
 	private JLabel lblOrder=new JLabel("查看购买订单");
-	private JLabel lblPortion=new JLabel("查看月订单份额");
+	private JLabel lblPortion=new JLabel("查看订单份额");
 	private JButton btnReturn=new JButton("返回");
 	private JButton btnSC=new JButton("收藏");
 	private JTextField txtSC=new JTextField(30);
@@ -77,15 +77,6 @@ public class BInterface extends JFrame{
 		frame.add(txtSC);
 		btnSC.setBounds(210,800,80,30);
 		frame.add(btnSC);
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		btnReturn.addActionListener(new ActionListener() {
 

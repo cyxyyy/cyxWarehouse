@@ -14,13 +14,9 @@ public class Load{
 	private JFrame frame=new JFrame("宠物系统登陆");
 	private JButton btnA=new JButton("店主");
 	private JButton btnB=new JButton("客户");
-	private JLabel lblId=new JLabel("账号");
-	private JTextField txtId=new JTextField(60);
-	private JLabel lblPassword=new JLabel("密码");
-	private JTextField txtPassword=new JTextField(60);
-	private JLabel lbls=new JLabel("去注册");
-	private JButton btnOK=new JButton("确定");
-	private JButton btnCancel=new JButton("取消");
+	private JLabel lblS=new JLabel("请选择你的身份");
+	
+	
 	public Load() {
 		frame.setSize(600,600);
 		frame.setLocation(400,200);
@@ -30,32 +26,16 @@ public class Load{
 		JLabel bg=new JLabel(new ImageIcon("D:\\JAVA\\pet4.jpg"));
 		frame.setContentPane(bg);
 		
-		btnA.setBounds(100,20,200,50);
+		btnA.setBounds(100,300,120,50);
 		btnA.setFont(new Font("宋体",Font.BOLD,20));
 		frame.add(btnA);
-		btnB.setBounds(300,20,200,50);
+		btnB.setBounds(300,300,120,50);
 		btnB.setFont(new Font("宋体",Font.BOLD,20));
 		frame.add(btnB);
 		
-		lblId.setBounds(100,100,100,20);//横轴x，数轴y，宽度，高度
-		lblId.setFont(new Font("宋体",Font.BOLD,20));
-		frame.add(lblId);
-		txtId.setBounds(150,100,100,30);
-		frame.add(txtId);
-		
-		lblPassword.setBounds(100,130,100,20);//横轴x，数轴y，宽度，高度
-		lblPassword.setFont(new Font("宋体",Font.BOLD,20));
-		frame.add(lblPassword);
-		txtPassword.setBounds(150,130,100,30);
-		frame.add(txtPassword);
-		
-		btnOK.setBounds(100,200,80,30);//横轴x，数轴y，宽度，高度
-		frame.add(btnOK);
-		btnCancel.setBounds(200,200,80,30);
-		frame.add(btnCancel);
-		
-		lbls.setBounds(100,170,80,20);
-		frame.add(lbls);
+		lblS.setBounds(80,80,200,80);//横轴x，数轴y，宽度，高度
+		lblS.setFont(new Font("宋体",Font.BOLD,20));
+		frame.add(lblS);
 		
 		btnA.addActionListener(new ActionListener() {
 			@Override

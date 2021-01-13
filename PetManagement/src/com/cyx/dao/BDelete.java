@@ -12,8 +12,8 @@ import com.cyx.ui.BInterface;
 
 public class BDelete{
 	private JFrame frame=new JFrame("信息删除");
-	private JLabel lblNumber=new JLabel("宠物编号");
-	private JTextField txtNumber=new JTextField(100);
+	private JLabel lblV=new JLabel("宠物的种类");
+	private JTextField txtV=new JTextField(100);
 	private JButton btnOK=new JButton("确认");
 	private JButton btnReturn=new JButton("返回");
 
@@ -26,12 +26,12 @@ public class BDelete{
 		JLabel bg=new JLabel(new ImageIcon("D:\\JAVA\\pet4.jpg"));
 		frame.setContentPane(bg);
 		
-		lblNumber.setBounds(100,100,100,100);
-		lblNumber.setFont(new Font("宋体",Font.BOLD,20));
-		frame.add(lblNumber);
+		lblV.setBounds(100,100,100,100);
+		lblV.setFont(new Font("宋体",Font.BOLD,20));
+		frame.add(lblV);
 		
-		txtNumber.setBounds(100,200,200,50);
-		frame.add(txtNumber);
+		txtV.setBounds(100,200,200,50);
+		frame.add(txtV);
 		
 		btnOK.setBounds(100,300,100,50);
 		frame.add(btnOK);
@@ -55,8 +55,8 @@ public class BDelete{
 		btnOK.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-					String number=txtNumber.getText();
-					new LoginSQL().deletePet(number);
+					String veriety=txtV.getText();
+					new LoginSQL().deletePet(veriety);
 					JOptionPane.showMessageDialog(null,"删除完毕");
 				}
 			});

@@ -105,21 +105,20 @@ public class COrder{
 				count++;
 			}
 			rs=pstmt.executeQuery();
-			Object[][] info=new Object[count][8];
+			Object[][] info=new Object[count][6];
 			count=0;
 			while(rs.next()) {
 				info[count][0]=rs.getString("name");
-				info[count][1]=rs.getString("adress");
-				info[count][2]=rs.getString("kind");
-				info[count][3]=rs.getString("veriety");
-				info[count][4]=rs.getString("sex");
-				info[count][5]=rs.getString("age");
-				info[count][6]=rs.getString("color");
-				info[count][7]=rs.getString("price");
+				info[count][1]=rs.getString("id");
+				info[count][2]=rs.getString("adress");
+				info[count][3]=rs.getString("kind");
+				info[count][4]=rs.getString("veriety");
+				info[count][5]=rs.getString("price");
+				
 				
 				count++;
 			}
-			String[] title= {"姓名","地址","物种","品种","性别","年龄","颜色","价格"};
+			String[] title= {"姓名","账号","地址","物种","品种","价格"};
 			this.tab=new JTable(info,title);
 			this.jth=this.tab.getTableHeader();
 			this.scp.getViewport().add(tab);

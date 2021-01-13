@@ -22,8 +22,8 @@ import com.cyx.ui.BInterface;
 
 public class BOrder extends JFrame{
 	private JButton btnOK=new JButton("搜索");
-	private JLabel lblName=new JLabel("姓名");
-	private JTextField txtName=new JTextField(20);
+	//private JLabel lblName=new JLabel("姓名");
+	//private JTextField txtName=new JTextField(20);
 	private JButton btnReturn=new JButton("返回");
 	
 	private JScrollPane scp;
@@ -40,13 +40,13 @@ public class BOrder extends JFrame{
 		JLabel bg=new JLabel(new ImageIcon("D:\\JAVA\\pet5.jpg"));
 		this.setContentPane(bg);
 		
-		lblName.setBounds(20,30,100,50);//横轴x，数轴y，宽度，高度
-		lblName.setFont(new Font("宋体",Font.BOLD,40));
-		lblName.setForeground(Color.BLUE);
-		this.add(lblName);
+//		lblName.setBounds(20,30,100,50);//横轴x，数轴y，宽度，高度
+//		lblName.setFont(new Font("宋体",Font.BOLD,40));
+//		lblName.setForeground(Color.BLUE);
+//		this.add(lblName);
 		
-		txtName.setBounds(150, 30, 100, 50);
-		this.add(txtName);
+//		txtName.setBounds(150, 30, 100, 50);
+//		this.add(txtName);
 		
 		btnOK.setBounds(280,30,100,50);
 		this.add(btnOK);
@@ -73,8 +73,8 @@ public class BOrder extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				String name=txtName.getText();
-				btnActionPerformed(name);
+				//String name=txtName.getText();
+				btnActionPerformed();
 				
 			}
 			
@@ -86,7 +86,7 @@ public class BOrder extends JFrame{
 		this.setVisible(true);
 		
 	}
-	public void btnActionPerformed(String name) {
+	/*public void btnActionPerformed(String name) {
 		try {
 			Connection conn=null;
 			conn=new LoginSQL().getConnection();
@@ -115,6 +115,41 @@ public class BOrder extends JFrame{
 				count++;
 			}
 			String[] title= {"姓名","地址","物种","品种","性别","年龄","颜色","价格"};
+			this.tab=new JTable(info,title);
+			this.jth=this.tab.getTableHeader();
+			this.scp.getViewport().add(tab);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}*/
+	public void btnActionPerformed() {
+		try {
+			Connection conn=null;
+			conn=new LoginSQL().getConnection();
+			String sql="select * from COrder";
+			PreparedStatement pstmt=conn.prepareStatement(sql);
+			ResultSet rs=pstmt.executeQuery();
+			
+			int count=0;
+			while(rs.next()) {
+				count++;
+			}
+			rs=pstmt.executeQuery();
+			Object[][] info=new Object[count][6];
+			count=0;
+			while(rs.next()) {
+				info[count][0]=rs.getString("name");
+				info[count][1]=rs.getString("id");
+				info[count][2]=rs.getString("adress");
+				info[count][3]=rs.getString("kind");
+				info[count][4]=rs.getString("veriety");
+				info[count][5]=rs.getString("price");
+				
+				
+				count++;
+			}
+			String[] title= {"姓名","账号","地址","物种","品种","价格"};
 			this.tab=new JTable(info,title);
 			this.jth=this.tab.getTableHeader();
 			this.scp.getViewport().add(tab);

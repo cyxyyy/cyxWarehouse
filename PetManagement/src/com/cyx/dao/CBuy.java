@@ -4,14 +4,19 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
 
+import com.cyx.ui.BInterface;
 import com.cyx.ui.CInterface;
 
 public class CBuy{
 	private JFrame frame=new JFrame("购买界面");
-	private JLabel lblK=new JLabel("物种");
+	/*private JLabel lblK=new JLabel("物种");
 	private JLabel lblV=new JLabel("品种");
 	private JLabel lblA=new JLabel("年龄");
 	private JLabel lblS=new JLabel("性别");
@@ -110,13 +115,113 @@ public class CBuy{
 				String n=txtN.getText();
 				String r=txtR.getText();
 				
-				new LoginSQL().insertOrder(k, n, s, r, a, c,v );
+				new LoginSQL().insertOrder(k, v, a, s, c, n,r );
 				JOptionPane.showMessageDialog(null,"购买成功");
 			}
 		});
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}*/
+	
+	private JScrollPane scp;
+	private JTableHeader jth;
+	private JTable tab;
+	private JButton btnOK;
+	private JButton btnReturn=new JButton("返回");
+	private JButton btnBuy=new JButton("购买");
+	public CBuy() {
+		//super("查看所有宠物列表");
+		frame.setSize(1000,1000);
+		frame.setLayout(null);
+		frame.setLocation(50,50);
+		
+		JLabel bg=new JLabel(new ImageIcon("D:\\JAVA\\pet5.jpg"));
+		frame.setContentPane(bg);
+		
+		scp=new JScrollPane();
+		//this.scp.setBounds(10,50,300,270);
+		scp.setBounds(30, 50, 920, 920);
+		btnOK=new JButton("确定");
+		btnOK.setBounds(100, 10, 100, 30);
+		btnReturn.setBounds(250,10,100,30);
+		btnBuy.setBounds(400,10,100,30);
+		
+		btnReturn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				frame.setVisible(false);
+				frame.dispose();
+				new CInterface();
+			}
+			
+		});
+		
+		btnOK.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				btnOK_ActionPerformed();
+			}
+			
+		});
+		
+		btnBuy.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				new Buy();
+			}
+			
+		});
+		
+		frame.add(scp);
+		frame.add(btnOK);
+		frame.add(btnReturn);
+		frame.add(btnBuy);
+		
+		frame.setVisible(true);
 	}
+	
+	public void btnOK_ActionPerformed() {
+		try {
+			Connection conn=null;
+			conn=new LoginSQL().getConnection();
+			String sql="select * from Pet";
+			PreparedStatement pstmt=conn.prepareStatement(sql);
+			ResultSet rs=pstmt.executeQuery();
+			
+			int count=0;
+			while(rs.next()) {
+				count++;
+			}
+			rs=pstmt.executeQuery();
+			Object[][] info=new Object[count][5];
+			count=0;
+			while(rs.next()) {
+				info[count][0]=rs.getString(1);
+				info[count][1]=rs.getString(2);
+				info[count][2]=rs.getString(3);
+				info[count][3]=rs.getString(4);
+				info[count][4]=rs.getString(5);
+				
+				
+				count++;
+			}
+			String[] title= {"物种","品种","份额","库存","价格"};
+			this.tab=new JTable(info,title);
+			this.jth=this.tab.getTableHeader();
+			this.scp.getViewport().add(tab);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 }
 /*public class ClientBuy {
